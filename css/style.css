@@ -76,6 +76,12 @@ select {
 
 /* Styling start */
 
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  letter-spacing: 1.5px;
+}
+
 .upper {
   padding: 1rem;
   padding-top: .75rem;
@@ -86,13 +92,13 @@ select {
   width: 100%;
   display: grid;
   grid-template-columns: 15% 300px 75px;
-  grid-template-rows: 50% 1.5fr 2fr;
+  grid-template-rows: 55% 1.5fr 2fr;
 }
 
 @media (min-width: 465px) {
   .upper {
     justify-content: center;
-    padding-top: 2.5rem;
+    padding-top: 2rem;
   }
 
 }
@@ -111,7 +117,7 @@ select {
   width: clamp(200px, 75vw, 370px);
   padding: 1.5rem;
   border-radius: 3%;
-  box-shadow: 15px 15px 20px hsla(0, 0%, 0%, 0.204);
+  filter: drop-shadow(15px 15px 10px hsla(0, 0%, 0%, 0.204));
   z-index: 2;
   grid-column-start: 1;
   grid-row-start: 2;
@@ -124,14 +130,16 @@ select {
 .card-details {
   margin-top: 13%;
   color: white;
+  font-size: clamp(10px, 3vw, 18px);
 }
 
 .card-num {
-  font-size: 18px;
+  font-size: 1.25em;
+  letter-spacing: 3.5px;
 }
 
 .space-between {
-  font-size: .8rem;
+  font-size: .75em;
   margin-top: 5%;
   display: flex;
   justify-content: space-between;
@@ -144,6 +152,7 @@ select {
   background-repeat: no-repeat;
   width: clamp(200px, 75vw, 370px);
   height: 200px;
+  font-size: .7rem;
   border-radius: 3%;
   position: relative;
   z-index: 1;
@@ -154,18 +163,27 @@ select {
 .cvc {
   color: white;
   position: absolute;
-  top: 43%;
-  right: 12%;
+  top: 45%;
+  right: 13%;
 }
 
 .lower {
   padding: 1.75rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 form {
-  margin-top: 3.5rem;
+  margin-top: 3rem;
   max-width: 30rem;
   margin-inline: auto;
+}
+
+@media (min-width: 400px) {
+  form {
+    margin-top: clamp(1rem, 13vw, 7rem);
+  }
 }
 
 label,
@@ -174,12 +192,12 @@ input {
 }
 
 label {
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
   color: hsl(278, 68%, 11%);
 }
 
 input {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   padding: 1rem;
   height: 3.5rem;
   width: 100%;
@@ -190,8 +208,12 @@ input {
   margin-top: .5rem;
 }
 
-input:active {
-  border-color: linear-gradient(hsl(249, 99%, 64%), hsl(278, 94%, 30%), 90deg);
+input:enabled {
+  caret-color: linear-gradient(hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+}
+
+input:user-invalid {
+  border-color: hsl(0, 100%, 66%);
 }
 
 .form-space-between {
@@ -202,6 +224,21 @@ input:active {
 
 .form-space-between label {
   width: 50%;
+}
+
+@media (max-width: 450px) {
+  .form-space-between label[for="date"] {
+    width: fit-content;
+    max-width: 13.5rem;
+  }
+
+  .date-inputs {
+    width: 100%;
+  }
+
+  .date-inputs input {
+    width: 50%;
+  }
 }
 
 .date-inputs {
@@ -219,3 +256,76 @@ input:active {
   color: hsl(270, 3%, 87%);
   font-size: 1.5rem;
 }
+
+.submit-button:hover,
+.submit-button:focus-visible {
+  cursor: pointer;
+  background: linear-gradient(hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+}
+
+@media (min-width: 1000px) {
+  .flex-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .upper {
+    background-image: url(../images/bg-main-desktop.png);
+    padding-top: 5rem;
+    height: 100vh;
+    width: 30%;
+    padding-left: 7rem;
+    grid-template-columns: 5vw 23vw 5vw;
+    grid-template-rows: max-content;
+    grid-template-areas: "card-front card-front emptyn"
+                         "empty card-back card-back";
+    row-gap: clamp(.5rem, 2vw, 3.5rem);
+    place-content: center;
+  }
+
+  .card-front {
+    width: clamp(320px, 33vw, 500px);
+    grid-area: card-front;
+    aspect-ratio: 37 / 20;
+  }
+
+  .card-details {
+    font-size: clamp(17px, 1.5vw, 25px);
+  }
+
+  .card-num {
+    letter-spacing: 2px;
+  }
+
+  .card-back {
+    font-size: clamp(12px, 1vw, 25px);
+    grid-area: card-back;
+    aspect-ratio: 37 / 20;
+    height: auto;
+    width: clamp(320px, 33vw, 500px);
+    filter: drop-shadow(15px 25px 15px hsla(0, 0%, 0%, 0.204));
+  }
+
+  .cvc {
+    top: 44.5%;
+  }
+
+  form {
+    margin-top: 0;
+  }
+
+}
+
+@media (min-width: 1175px) {
+  .card-num {
+    letter-spacing: 5px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .upper {
+    padding-left: clamp(1rem, 25vw, 45rem);
+  }
+}
+
+

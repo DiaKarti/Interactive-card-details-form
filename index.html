@@ -2,11 +2,15 @@
 <html lang="en">
 
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Card Form</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="icon" href="./images/favicon-32x32.png" />
+    <script defer src="./script/index.js"></script>
 </head>
 
 <body>
@@ -15,34 +19,34 @@
             <div class="card-front">
                 <img class="card-logo" src="./images/card-logo.svg">
                 <div class="card-details">
-                    <div class="card-num">0000 0000 0000 0000</div>
+                    <div class="card-num" id="cardNumPreview">0000 0000 0000 0000</div>
                     <div class="space-between">
-                        <div class="card-name">JANE APPLESEED</div>
-                        <div class="card-date">00/00</div>
+                        <div class="card-name" id="cardNamePreview">JANE APPLESEED</div>
+                        <div class="card-date" id="cardDatePreview">00/00</div>
                     </div>
                 </div>
             </div>
             <div class="card-back">
-                <div class="cvc">000</div>
+                <div class="cvc" id="cvcPreview">000</div>
             </div>
         </div>
         <div class="lower">
             <form action="post">
                 <label for="name">CARDHOLDER NAME
-                    <input type="text" placeholder="e.g. Jane Appleseed" id="cardName" name="">
+                    <input  required type="text" placeholder="e.g. Jane Appleseed" id="cardName" name="">
                 </label>
                 <label for="num">CARD NUMBER
-                    <input type="number" placeholder="e.g. 1234 5678 9123 0000" id="cardNum" name="">
+                    <input  required type="text" inputmode="numeric" placeholder="e.g. 1234 5678 9123 0000" id="cardNum" name="">
                 </label>
                 <div class="form-space-between">
                     <label for="date">EXP. DATE (MM/YY)
                         <div class="date-inputs">
-                            <input type="number" placeholder="MM" id="dateMonth" name="date">
-                            <input type="number" placeholder="YY" id="dateYear" name="date">
+                            <input  required type="text" inputmode="numeric" placeholder="MM" id="dateMonth" name="date">
+                            <input  required type="text" inputmode="numeric" placeholder="YY" id="dateYear" name="date">
                         </div>
                     </label>
                     <label for="cvc">CVC
-                        <input type="text" placeholder="e.g. 123" id="cvc" name="cvc">
+                        <input  required type="text" placeholder="e.g. 123" id="cvc" name="cvc">
                     </label>
                 </div>
                 <button type="submit" class="submit-button">

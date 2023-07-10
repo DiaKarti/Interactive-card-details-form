@@ -31,28 +31,41 @@
             </div>
         </div>
         <div class="lower">
-            <form action="post">
-                <label for="name">CARDHOLDER NAME
-                    <input  required type="text" placeholder="e.g. Jane Appleseed" id="cardName" name="">
+            <form id="form" onsubmit="return (validateFormGlobal());">
+                <label for="cardName">CARDHOLDER NAME
+                    <input required type="text" placeholder="e.g. Jane Appleseed" id="cardName" name="cardName">
                 </label>
-                <label for="num">CARD NUMBER
-                    <input  required type="text" inputmode="numeric" placeholder="e.g. 1234 5678 9123 0000" id="cardNum" name="">
+                <label for="cardNum">CARD NUMBER
+                    <input required maxlength="19" type="text" inputmode="numeric" placeholder="e.g. 1234 5678 9123 0000" id="cardNum" name="cardNum">
                 </label>
                 <div class="form-space-between">
                     <label for="date">EXP. DATE (MM/YY)
                         <div class="date-inputs">
-                            <input  required type="text" inputmode="numeric" placeholder="MM" id="dateMonth" name="date">
-                            <input  required type="text" inputmode="numeric" placeholder="YY" id="dateYear" name="date">
+                            <input required maxlength="2" type="text" inputmode="numeric" placeholder="MM" id="dateMonth" name="date">
+                            <input required maxlength="2" type="text" inputmode="numeric" placeholder="YY" id="dateYear" name="date">
                         </div>
                     </label>
                     <label for="cvc">CVC
-                        <input  required type="text" placeholder="e.g. 123" id="cvc" name="cvc">
+                        <input required maxlength="3" type="text" placeholder="e.g. 123" id="cvc" name="cvc">
                     </label>
                 </div>
-                <button type="submit" class="submit-button">
+                <button type="submit" class="submit-button" id="submitButton">
                     Confirm
                 </button>
             </form>
+
+            <div class="success hidden" id="success">
+                <img src="./images/icon-complete.svg">
+                <p class="">
+                    THANK YOU!
+                </p>
+                <span>
+                    We've added your card details
+                </span>
+                <button class="continue-button">
+                    Continue
+                </button>
+            </div>
         </div>
     </div>
 </body>

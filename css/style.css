@@ -202,18 +202,28 @@ input {
   height: 3.5rem;
   width: 100%;
   color: hsl(279, 6%, 55%);
-  border-color: hsla(0, 0%, 66%, 0.375);  
+  border-color: hsla(0, 0%, 66%, 0.375);
   border-radius: .5rem;
   border-width: 1px;
   margin-top: .5rem;
 }
 
-input:enabled {
-  caret-color: linear-gradient(hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+input:focus {
+  outline: none;
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(hsl(249, 99%, 64%), hsl(278, 94%, 30%)) border-box;
+  border: 1px solid transparent;
 }
 
-input:user-invalid {
+.invalid {
   border-color: hsl(0, 100%, 66%);
+}
+
+.invalidity-message {
+  color: hsl(0, 100%, 66%);
+  letter-spacing: normal;
+  margin-top: .6rem;
+  font-size: .8rem;
 }
 
 .form-space-between {
@@ -246,7 +256,8 @@ input:user-invalid {
   gap: .5rem;
 }
 
-.submit-button {
+.submit-button,
+.continue-button {
   width: 100%;
   height: 4rem;
   margin-top: 2rem;
@@ -258,7 +269,9 @@ input:user-invalid {
 }
 
 .submit-button:hover,
-.submit-button:focus-visible {
+.submit-button:focus-visible,
+.continue-button:hover,
+.continue-button:focus-visible {
   cursor: pointer;
   background: linear-gradient(hsl(249, 99%, 64%), hsl(278, 94%, 30%));
 }
@@ -278,7 +291,7 @@ input:user-invalid {
     grid-template-columns: 5vw 23vw 5vw;
     grid-template-rows: max-content;
     grid-template-areas: "card-front card-front emptyn"
-                         "empty card-back card-back";
+      "empty card-back card-back";
     row-gap: clamp(.5rem, 2vw, 3.5rem);
     place-content: center;
   }
@@ -328,4 +341,44 @@ input:user-invalid {
   }
 }
 
+.success {
+  font-size: clamp(.5rem, 5vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  width: 100%;
+  margin-top: 3rem;
+  max-width: 30rem;
+}
 
+@media (min-width: 400px) {
+  .success {
+    margin-top: clamp(1rem, 13vw, 5rem);
+  }
+}
+
+.success img {
+  width: 25%;
+}
+
+.success p {
+  font-size: 1.5em;
+  margin-top: 2rem;
+  color: hsl(278, 68%, 11%);
+  letter-spacing: 2.5px;
+}
+
+.success span {
+  color: hsl(279, 6%, 55%);
+  letter-spacing: .5px;
+  font-size: .9em;
+  margin-top: .65rem;
+}
+
+.continue-button {
+  margin-top: 2em;
+}
+
+.hidden {
+  display: none;
+}

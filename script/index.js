@@ -76,7 +76,7 @@ function validateForm(evt) {
             invalidErrorElem.innerText = "Wrong spacing between digits";
             errorFlag = true;
         }
-    } else if ((elem === cardCvcInput || elem === cardDateMonthInput || elem === cardDateYearInput) && numberRegexp.test(elem.value)) {
+    } else if ((elem === cardCvcInput || elem === cardDateMonthInput || elem === carsdDateYearInput) && numberRegexp.test(elem.value)) {
         invalidErrorElem.innerText = "Wrong format, numbers only";
         errorFlag = true;
     } else if (elem === cardDateMonthInput && elem.value > 12) {

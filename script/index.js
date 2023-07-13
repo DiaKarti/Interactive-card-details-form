@@ -34,7 +34,6 @@ function revertToDefault(element) {
 }
 
 function updateCardPreview(evt) {
-    console.log(typeof(evt))
     let elem = evt.currentTarget;
     if (elem.value === "") {
         revertToDefault(elem);
@@ -60,14 +59,12 @@ function validateForm(evt) {
         elem.parentElement.parentElement.querySelector(".invalidity-message").remove();
     }
 
-    console.log(letterRegexp.test(elem.value));
     if (elem.value === "") {
         invalidErrorElem.innerText = "Can't be blank";
         errorFlag = true;
     } else if (elem === cardNameInput && letterRegexp.test(elem.value)) {
         invalidErrorElem.innerText = "Wrong format, letters only";
         errorFlag = true;
-        console.log("Made it here !!")
     } else if (elem === cardNumInput) {
         if (numberRegexp.test(elem.value.trim().split(" ").join(""))) {
             invalidErrorElem.innerText = "Wrong format, numbers only";
@@ -78,6 +75,9 @@ function validateForm(evt) {
         }
     } else if ((elem === cardCvcInput || elem === cardDateMonthInput || elem === cardDateYearInput) && numberRegexp.test(elem.value)) {
         invalidErrorElem.innerText = "Wrong format, numbers only";
+        errorFlag = true;
+    } else if (elem === cardDateMonthInput && elem.value > 12) {
+        invalidErrorElem.innerText = "Invalid exp. month";
         errorFlag = true;
     }
     if (errorFlag) {
@@ -99,35 +99,38 @@ for (let element of reactiveElements) {
     element.addEventListener("focusout", validateForm);
 }
 
-function refreshValidation() {
+function refreshPreview() {
     for (let element of reactiveElements) {
-       element.dispatchEvent(new Event("input"));
+        element.dispatchEvent(new Event("input"));
     }
 }
 
-window.onload = refreshValidation();
+window.onload = refreshPreview();
 
 let globalErrorFlag;
 
 function validateFormGlobal() {
     for (let element of reactiveElements) {
         element.dispatchEvent(new Event("focusout"));
-    }
-    if (document.querySelector(".invalidity-message")) {
-        globalErrorFlag = true;
-    } else {
-        globalErrorFlag = false;
+        if (element.parentElement.parentElement.querySelector(".invalidity-message") || element.parentElement.querySelector("invalidity-message")) {
+            globalErrorFlag = true;
+            console.log(globalErrorFlag);
+            return (!globalErrorFlag);
+        } else {
+            globalErrorFlag = false;
+        }
     }
     return (!globalErrorFlag);
 }
 
-form.onclick = (e) => {
+form.onsubmit = (e) => {
+    e.preventDefault();
     if (validateFormGlobal()) {
+        console.log("should've submitted");
         form.className = "hidden"
-        success.className ="success";
-        e.preventDefault();
+        success.className = "success";
     } else {
         form.className = ""
-        success.className ="hidden success";
+        success.className = "hidden success";
     }
 };

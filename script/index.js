@@ -69,7 +69,7 @@ function validateForm(evt) {
         if (numberRegexp.test(elem.value.trim().split(" ").join(""))) {
             invalidErrorElem.innerText = "Wrong format, numbers only";
             errorFlag = true;
-        } else if (numberRegexp.test(elem.value.trim().split(" ").join("")).length !== 16) {
+        } else if (elem.value.trim().split(" ").join("")).length !== 16) {
             invalidErrorElem.innerText = "Incorrect card number length";
             errorFlag = true;
         } else if (elem.value.trim().split(" ").length !== 4) {
